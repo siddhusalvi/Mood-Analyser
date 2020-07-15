@@ -21,9 +21,17 @@ class MoodAnalyserTest extends TestCase{
   }
   @Test
   def testCase21(): Unit ={
-    val m:MoodAnalyser = new MoodAnalyser()
+    val m:MoodAnalyser = new MoodAnalyser("")
     assertEquals(m.analyseMood(),"HAPPY")
   }
+  @Test
+  def testCase31(): Unit ={
+    val m:MoodAnalyser = new MoodAnalyser()
+    val exception = assertThrows(classOf[MoodAnalysisException], () => m.analyseMood())
+    assertEquals("Empty Message", exception.getMessage)
+
+  }
+
 
 
 
