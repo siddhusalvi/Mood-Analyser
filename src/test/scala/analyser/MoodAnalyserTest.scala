@@ -1,5 +1,11 @@
 package analyser
+import analyser.MoodAnalyser
+import org.junit.Test
+import junit.framework.TestCase
+import org.junit.Assert._
 
-class MoodAnalyserTest {
+class MoodAnalyserTest extends TestCase{
+
+
 
 }
