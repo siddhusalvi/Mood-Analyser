@@ -2,6 +2,6 @@ package analyser
 
 class MoodAnalyser{
   def analyseMood(msg:String):String = {
-    "SAD"
-  }
+    if (msg.toLowerCase.contains("sad")) {"SAD"}else{ "HAPPY"}
+ }
 }
