@@ -9,7 +9,7 @@ class MoodAnalyserTest extends TestCase{
   @Test
   def testCase11(): Unit ={
     val msg = "I am in Sad\\nMood"
-   val m:MoodAnalyser = new MoodAnalyser(msg)
+   val m:MoodAnalyser = new MoodAnalyser()
     assertEquals(m.analyseMood(),"SAD")
   }
 
@@ -19,5 +19,12 @@ class MoodAnalyserTest extends TestCase{
     val m:MoodAnalyser = new MoodAnalyser()
     assertEquals(m.analyseMood(),"HAPPY")
   }
+  @Test
+  def testCase21(): Unit ={
+    val m:MoodAnalyser = new MoodAnalyser()
+    assertEquals(m.analyseMood(),"HAPPY")
+  }
+
+
 
 }
