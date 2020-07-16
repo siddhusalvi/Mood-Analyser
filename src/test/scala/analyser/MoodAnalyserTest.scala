@@ -46,4 +46,11 @@ class MoodAnalyserTest extends TestCase{
      val num = 0
     assertFalse(analyser1.equals(num))
   }
+
+  @Test
+  def testCase42():Unit ={
+    val exception = assertThrows(classOf[MoodAnalysisException], () => MoodAnalyserFactory("Moodanalyser"))
+    assertEquals("No Such Class Error", exception.getMessage)
+  }
+
   }
