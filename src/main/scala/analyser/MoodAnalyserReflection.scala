@@ -1,22 +1,17 @@
 package analyser
-import scala.reflect.macros.internal
-import scala.reflect.runtime.{universe => ru}
-import ru._
 
-object MoodAnalyserReflection extends App {
+//case class NoSuchMethodException(msg: String) extends Exception(msg)
 
-  val clss = new MoodAnalyser()
-
-    def printMethods[T](t: T) { // requires instance
-      val meths = t.getClass.getMethods
-      println(meths.mkString("\n"))
+class MoodAnalyserReflection {
+  def executeMethod(methodName: String, para: Any): Unit = {
+    try {
+      val clss = new MoodAnalyser()
+      val obj = clss.getClass
+      val method = obj.getDeclaredMethod(methodName, classOf[Any])
+      method.invoke(para)
+    } catch {
+      case exception1: NoSuchMethodException => throw new NoSuchMethodException("Method not found")
+      case exception: Exception => println(exception.getMessage)
     }
-
-  printMethods(clss)
-
-  def printMethods1(name: String) { // low-level
-    val meths = Class.forName(name).getMethods
-    println(meths take 5 mkString "\n")
   }
-
 }
