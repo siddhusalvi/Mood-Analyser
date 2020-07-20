@@ -1,5 +1,5 @@
 package analyser
-import analyser.MoodAnalyser
+//import analyser.MoodAnalyser
 import org.junit.Test
 import junit.framework.TestCase
 import org.junit.Assert._
@@ -53,4 +53,15 @@ class MoodAnalyserTest extends TestCase{
     assertEquals("No Such Class Error", exception.getMessage)
   }
 
+  @Test
+  def testCase51():Unit ={
+
+    val obj = new MoodAnalyserReflection()
+
+    val exception = assertThrows(classOf[NoSuchMethodException], () =>obj.executeMethod("isEmpty",5))
+    assertEquals("Method not found", exception.getMessage)
   }
+
+
+
+}
