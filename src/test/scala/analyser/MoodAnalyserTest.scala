@@ -55,13 +55,16 @@ class MoodAnalyserTest extends TestCase{
 
   @Test
   def testCase51():Unit ={
-
     val obj = new MoodAnalyserReflection()
-
-    val exception = assertThrows(classOf[NoSuchMethodException], () =>obj.executeMethod("isEmpty",5))
+    val exception = assertThrows(classOf[NoSuchMethodException], () =>obj.executeMethod("isEmpty"))
     assertEquals("Method not found", exception.getMessage)
   }
 
 
+  @Test
+  def testCase61():Unit ={
+    val obj = new MoodAnalyserReflection()
+    assert(obj.executeMethod("print")==10)
+  }
 
 }

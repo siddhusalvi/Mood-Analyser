@@ -1,14 +1,11 @@
 package analyser
-
-//case class NoSuchMethodException(msg: String) extends Exception(msg)
-
 class MoodAnalyserReflection {
-  def executeMethod(methodName: String, para: Any): Unit = {
+  def executeMethod(methodName: String): Any = {
     try {
-      val clss = new MoodAnalyser()
-      val obj = clss.getClass
-      val method = obj.getDeclaredMethod(methodName, classOf[Any])
-      method.invoke(para)
+      val obj = new MoodAnalyser()
+      val clss = obj.getClass
+      val method = clss.getDeclaredMethod(methodName)
+      return  method.invoke(obj)
     } catch {
       case exception1: NoSuchMethodException => throw new NoSuchMethodException("Method not found")
       case exception: Exception => println(exception.getMessage)

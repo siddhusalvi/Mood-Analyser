@@ -9,11 +9,6 @@ trait Analyser {
 
 class MoodAnalyser extends Analyser {
   var msg: String = null
-  def this(msg: String) {
-    this()
-    this.msg = msg
-  }
-
 
   override def analyseMood(msg:String): String = {
     try {
@@ -28,6 +23,7 @@ class MoodAnalyser extends Analyser {
       case exception: NullPointerException => return "HAPPY"
     }
   }
+  def print(): Int ={10}
 
 
   override def equals(otherObj: Any): Boolean = {
