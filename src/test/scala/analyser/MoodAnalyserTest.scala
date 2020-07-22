@@ -1,5 +1,4 @@
 package analyser
-//import analyser.MoodAnalyser
 import org.junit.Test
 import junit.framework.TestCase
 import org.junit.Assert._
@@ -8,9 +7,9 @@ class MoodAnalyserTest extends TestCase{
 
   @Test
   def testCase11(): Unit ={
-    val msg = "I am in Sad\\nMood"
+    val msg = "I am in sad "
    val m:MoodAnalyser = new MoodAnalyser()
-    assertEquals(m.analyseMood(msg),"SAD")
+    assertEquals("SAD",m.analyseMood("I am in sad "))
   }
 
   @Test
@@ -56,15 +55,37 @@ class MoodAnalyserTest extends TestCase{
   @Test
   def testCase51():Unit ={
     val obj = new MoodAnalyserReflection()
-    val exception = assertThrows(classOf[NoSuchMethodException], () =>obj.executeMethod("isEmpty"))
+    val exception = assertThrows(classOf[NoSuchMethodException], () =>obj.executeMethodNoPara("isEmpty"))
     assertEquals("Method not found", exception.getMessage)
   }
 
+  @Test
+  def testCase62():Unit ={
+    val obj = new MoodAnalyserReflection()
+    assert(obj.executeMethodwithPara("print").equals(10))
+  }
 
   @Test
-  def testCase61():Unit ={
+  def testSetField:Unit ={
     val obj = new MoodAnalyserReflection()
-    assert(obj.executeMethod("print")==10)
+    assert(obj.setFieldAndCallMethod("msg","happy").equals("happy"))
   }
+
+  @Test
+  def testSetFieldException:Unit ={
+    val obj = new MoodAnalyserReflection()
+    val exception = assertThrows(classOf[NoSuchFieldException], () => obj.setFieldAndCallMethod("ms","happy"))
+    assertEquals("No Such Field", exception.getMessage)
+  }
+
+  @Test
+  def testNullValueException:Unit ={
+    val obj = new MoodAnalyserReflection()
+    val exception = assertThrows(classOf[NullValueException], () => obj.setFieldAndCallMethod("ms",null))
+    assertEquals("Cannot assign null value", exception.getMessage)
+  }
+
+
+
 
 }
