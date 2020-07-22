@@ -1,6 +1,8 @@
 package analyser
 
 case class MoodAnalysisException(msg: String) extends Exception(msg)
+case class NoSuchFieldException(msg: String) extends Exception(msg)
+case class NullValueException(msg: String) extends Exception(msg)
 
 trait Analyser {
   def analyseMood(msg: String): String
@@ -10,12 +12,13 @@ trait Analyser {
 class MoodAnalyser extends Analyser {
   var msg: String = null
 
-  override def analyseMood(msg:String): String = {
+  override def analyseMood(msg:String=""): String = {
+    this.msg = msg
     try {
-      if (msg == null) {
+      if (this.msg == null || this.msg.equals("") ||this.msg.length == 1) {
         throw MoodAnalysisException("Empty Mood")
-      } else if (this.msg.toLowerCase.contains("sad")) {
-        "SAD"
+      } else if (this.msg.toUpperCase().contains("SAD")) {
+        return "SAD"
       } else {
         "HAPPY"
       }
@@ -24,6 +27,9 @@ class MoodAnalyser extends Analyser {
     }
   }
   def print(): Int ={10}
+  def getMsg(): String ={
+    this.msg
+  }
 
 
   override def equals(otherObj: Any): Boolean = {
