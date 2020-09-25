@@ -31,7 +31,6 @@ class MoodAnalyser extends Analyser {
     this.msg
   }
 
-
   override def equals(otherObj: Any): Boolean = {
     if ((this.getClass.hashCode() - otherObj.getClass.hashCode()) == 0) {
       true
